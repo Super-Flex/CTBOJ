@@ -70,7 +70,7 @@ print(numbers)
 numbers_set = set(numbers)
 
 # CSV 파일 경로
-csv_file = "문제데이터크롤링.csv"
+csv_file = "data/문제데이터크롤링.csv"
 
 # CSV 파일에 데이터 저장
 with open(csv_file, "w", newline="", encoding="utf-8") as file:
