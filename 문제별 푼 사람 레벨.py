@@ -14,21 +14,21 @@ driver = webdriver.Chrome(options=options)
 
 login_url = "https://www.acmicpc.net/login?next=%2F"  # 로그인 페이지 URL
 driver.get(login_url)
-time.sleep(2)
-username_input = driver.find_element(
-    By.NAME, "login_user_id"
-)  # 아이디 입력란의 name 속성을 사용하여 요소 찾기
-password_input = driver.find_element(
-    By.NAME, "login_password"
-)  # 비밀번호 입력란의 name 속성을 사용하여 요소 찾기
-username_input.send_keys("acepark")  # 여기에 로그인에 사용할 아이디 입력
-time.sleep(5)
-password_input.send_keys("qew213")  # 여기에 로그인에 사용할 비밀번호 입력
-time.sleep(5)
-login_button = driver.find_element(By.ID, "submit_button")  # 로그인 버튼 요소를 id 속성을 사용하여 찾기
-login_button.click()
-# 로그인이 완료될 때까지 잠시 대기
-time.sleep(5)
+time.sleep(10)
+# username_input = driver.find_element(
+#     By.NAME, "login_user_id"
+# )  # 아이디 입력란의 name 속성을 사용하여 요소 찾기
+# password_input = driver.find_element(
+#     By.NAME, "login_password"
+# )  # 비밀번호 입력란의 name 속성을 사용하여 요소 찾기
+# username_input.send_keys("acepark")  # 여기에 로그인에 사용할 아이디 입력
+# time.sleep(5)
+# password_input.send_keys("qew213")  # 여기에 로그인에 사용할 비밀번호 입력
+# time.sleep(5)
+# login_button = driver.find_element(By.ID, "submit_button")  # 로그인 버튼 요소를 id 속성을 사용하여 찾기
+# login_button.click()
+# # 로그인이 완료될 때까지 잠시 대기
+# time.sleep(5)
 
 
 href_values = []
@@ -50,16 +50,16 @@ print(pages)
 
 tiers = [0] * 31
 try_cnts = [0] * 31
-for page in range(1, 1 + 1):
+for page in range(1, pages + 1):
     URL = f"https://www.acmicpc.net/problem/status/{problem_id}/{page}"
     driver.get(URL)
     html = driver.page_source
     # with open("1005번 맞힌 사람 - 1 페이지.html", "r", encoding="utf-8") as file:
     #     html = file.read()
-
     soup = BeautifulSoup(html, "html.parser")
     tbody = soup.find_all("tbody")
     all_row = tbody[1].find_all("tr")
+    print(all_row)
     for row in all_row[1:]:
         try:
             try_cnt = int(row.find_all("td")[2].text)
